@@ -1,0 +1,10 @@
+.poljeIspravno {
+    -fx-control-inner-background: green;
+    -fx-border-width: 2;
+    -fx-border-radius: 2px;
+}
+.poljeNijeIspravno {
+    -fx-control-inner-background: red;
+    -fx-border-width: 2;
+    -fx-border-radius: 2px;
+}
