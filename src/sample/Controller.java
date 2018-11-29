@@ -3,11 +3,9 @@ package sample;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
+import java.awt.event.ActionEvent;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
@@ -30,10 +28,13 @@ public class Controller {
     public ChoiceBox ciklusField;
     public ChoiceBox smjerField;
     public CheckBox pripadnostField;
-    boolean imeValidno = false, prezimeValidno = false, indeksValidan = false, jmbgValidan = false, datumValidan = false, emailValidan = false, telefonValidan = false;
+    private boolean imeValidno = false, prezimeValidno = false, indeksValidan = false, jmbgValidan = false, datumValidan = false, emailValidan = false, telefonValidan = false;
     public String uporediSaJmbg = "";
     public String datumZaIspis = "";
 
+    public boolean formularValidan() {
+        return (imeValidno && prezimeValidno && indeksValidan && jmbgValidan && datumValidan && emailValidan && telefonValidan);
+    }
     //provjera za ime i prezime
     private boolean validnoImePrezime(String n) {
         if (n.length() < 1 || n.length() > 20) return false;
@@ -259,5 +260,53 @@ public class Controller {
                 }
             }
         });
+    }
+    public void dugmeKliknuto(ActionEvent actionEvent) {
+        String mjesto = mjestoField.getEditor().getText();
+        String ime = imeField.getText();
+        String prezime = prezimeField.getText();
+        String datum = datumField.getText();
+        String jmbg = jmbgField.getText();
+        String izdvojiDatum = "";
+        if (jmbg.length() == 13) izdvojiDatum = jmbg.substring(0, 7);
+        if (isDateValid(datum)) {
+            datumValidan = true;
+        } else {
+            datumValidan = false;
+            datumField.getStyleClass().add("poljeNijeIspravno");
+        }
+
+        if (isJmbgValid(jmbg) && izdvojiDatum != "" && izdvojiDatum.equals(uporediSaJmbg)) {
+            jmbgValidan = true;
+        } else {
+            jmbgValidan = false;
+            jmbgField.getStyleClass().add("poljeNijeIspravno");
+        }
+        String email = emailField.getText();
+        if (isValidEmail(email)) {
+            emailValidan = true;
+
+        } else {
+            emailValidan = false;
+            emailField.getStyleClass().add("poljeNijeIspravno");
+        }
+        telefonValidan = isValidTelephone(telefonField.getText());
+        if (telefonValidan) telefonField.getStyleClass().add("poljeIspravno");
+        if (formularValidan()) {
+            System.out.println("Student: " + ime + " " + prezime + " ( " + indexField.getText() + " )");
+            System.out.println("JMBG: " + jmbg + ", datum rođenja: " + datumZaIspis+", mjesto rodđenja: "+ mjesto);
+            System.out.println("Ulica stanovanja: " + adresaField.getText() + ",broj telefona: " + telefonField.getText());
+            System.out.println("Email adresa: " + email);
+            System.out.println(statusField.getValue().toString() + " student, smjer: " + smjerField.getValue().toString() + " godina: " + godinaField.getValue());
+            if (pripadnostField.isSelected()) System.out.println("Postoji neka od boračke pripadnosti");
+            else System.out.println("Ne postoji nikakva boračka pripadnost");
+        }
+        if (!formularValidan()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Nije validno");
+            alert.setHeaderText("Popunjeni formular nije validan");
+            alert.setContentText("Podaci označeni crvenom bojom su pogrešni, ili nedostaju");
+            alert.show();
+        }
     }
 }
