@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -30,6 +36,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints />
     </rowConstraints>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -38,7 +45,7 @@
         <Label prefHeight="27.0" prefWidth="102.0" text="Ime:" GridPane.rowIndex="0" />
         <Label prefHeight="27.0" prefWidth="102.0" text="Prezime:" GridPane.rowIndex="2" />
         <Label prefHeight="26.0" prefWidth="102.0" text="Broj indeksa:" GridPane.rowIndex="4" />
-        <TextField fx:id="imeField" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <TextField fx:id="imeField" prefWidth="94.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
             <tooltip>
                 <Tooltip text="Unesite ime" />
             </tooltip>
@@ -58,27 +65,22 @@
 
         <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
         <Separator prefWidth="200.0" GridPane.rowIndex="5" />
-        <Label prefHeight="27.0" prefWidth="102.0" text="JMBG:" GridPane.rowIndex="6" />
-        <Label prefHeight="27.0" prefWidth="102.0" text="Datum rodjenja:" GridPane.rowIndex="8" />
-        <Label prefHeight="26.0" prefWidth="102.0" text="Mjesto rodjenja:" GridPane.rowIndex="10" />
-        <TextField fx:id="jmbgField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <Label prefHeight="27.0" prefWidth="102.0" text="Adresa:" GridPane.rowIndex="6" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Telefon:" GridPane.rowIndex="8" />
+        <Label prefHeight="26.0" prefWidth="102.0" text="Email:" GridPane.rowIndex="10" />
+        <TextField fx:id="jmbgField" GridPane.columnIndex="4" GridPane.rowIndex="0">
             <tooltip>
                 <Tooltip text="Unesite JMBG" />
             </tooltip>
         </TextField>
-        <TextField fx:id="datumField" GridPane.columnIndex="1" GridPane.rowIndex="8">
+        <TextField fx:id="datumField" GridPane.columnIndex="4" GridPane.rowIndex="2">
             <tooltip>
                 <Tooltip text="Unesite datum rodjenja" />
             </tooltip>
         </TextField>
-        <TextField fx:id="mjestoField" GridPane.columnIndex="1" GridPane.rowIndex="10">
-            <tooltip>
-                <Tooltip text="Unesite mjesto rodjenja" />
-            </tooltip>
-        </TextField>
         <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
         <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <TextField GridPane.columnIndex="4" />
+      <TextField prefHeight="25.0" prefWidth="85.0" GridPane.columnIndex="4" />
       <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
       <TextField GridPane.columnIndex="4" GridPane.rowIndex="4" />
       <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
@@ -90,8 +92,75 @@
       <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="25.0" GridPane.columnIndex="2" />
       <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="28.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-        <Label prefHeight="27.0" prefWidth="102.0" text="JMBG:" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-        <Label prefHeight="27.0" prefWidth="102.0" text="Datum rodjenja:" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
-        <Label prefHeight="26.0" prefWidth="102.0" text="Mjesto rodjena:" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+        <Label prefHeight="27.0" prefWidth="102.0" text="JMBG:" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Datum rodjenja:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Label prefHeight="26.0" prefWidth="102.0" text="Mjesto rodjena:" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+        <ComboBox fx:id="mjestoField" editable="true" prefHeight="25.0" prefWidth="101.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Sarajevo" />
+                    <String fx:value="Konjic" />
+                    <String fx:value="Mostar" />
+                    <String fx:value="Tuzla" />
+                    <String fx:value="Bihac" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+      <TextField fx:id="adresaField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="23.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="27.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Separator orientation="VERTICAL" prefHeight="24.0" prefWidth="23.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <Separator orientation="VERTICAL" prefHeight="24.0" prefWidth="29.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <Separator orientation="VERTICAL" prefHeight="24.0" prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Odsjek:" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Godina:" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Ciklus:" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Status:" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+        <Label prefHeight="27.0" prefWidth="102.0" text="Posebne kategorije:" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+      <ChoiceBox fx:id="smjerField" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="AE" />
+                  <String fx:value="RI" />
+                  <String fx:value="TK" />
+                  <String fx:value="EE" />
+              </FXCollections>
+          </items>
+          <cursor>
+              <Cursor fx:constant="TEXT" />
+          </cursor>
+      </ChoiceBox>
+      <ChoiceBox fx:id="godinaField" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="prva" />
+                  <String fx:value="druga" />
+                  <String fx:value="treca" />
+              </FXCollections>
+          </items>
+      </ChoiceBox>
+      <ChoiceBox fx:id="ciklusField" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="prvi" />
+                  <String fx:value="drugi" />
+                  <String fx:value="treci" />
+              </FXCollections>
+          </items>
+      </ChoiceBox>
+      <ChoiceBox fx:id="statusField" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="9">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="redovan" />
+                  <String fx:value="samofinansirajuci" />
+              </FXCollections>
+          </items>
+      </ChoiceBox>
+        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="10">
+        </ChoiceBox>
+        <Button fx:id="dugme" mnemonicParsing="false" prefHeight="25.0" prefWidth="217.0" text="Potvrdi" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="12" />
+   //onAction="#dugmeKliknuto"
     </children>
 </GridPane>
