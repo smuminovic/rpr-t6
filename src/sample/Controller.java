@@ -97,5 +97,36 @@ public class Controller {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
         return matcher.find();
     }
-
+    //provjera telefona
+    private boolean validanUnosTelefon(String n){
+        return isValidTelephone(n);
+    }
+    public static boolean isValidTelephone(String nmbr){
+        //System.out.println(nmbr);
+        Pattern pattern = Pattern.compile("\\d{3}-\\d{7}");
+        Pattern pattern1 = Pattern.compile("\\d{3}-\\d{6}");
+        Matcher matcher = pattern.matcher(nmbr);
+        Matcher matcher1 = pattern1.matcher(nmbr);
+        return (matcher.matches()|| matcher1.matches());
+    }
+    //provjera za jmbg
+    private boolean validanJmbg(String n) {
+        if (n.length() != 13) return false;
+        for (int i = 0; i < n.length(); i++) {
+            if (!(n.charAt(i) >= '0' && n.charAt(i) <= '9')) {
+                return false;
+            }
+        }
+        return !n.trim().isEmpty();
+    }
+    public static boolean  isJmbgValid(String jmbg){
+        int politickaRegija = (jmbg.charAt(7) - '0') * 10 + (jmbg.charAt(8) - '0');
+        if (politickaRegija < 0 || politickaRegija > 96) return false;
+        int jedinstveniBroj = (jmbg.charAt(9) - '0') * 100 + (jmbg.charAt(10) - '0') * 10 + (jmbg.charAt(11) - '0');
+        if (!((jedinstveniBroj>  0 &&jedinstveniBroj <= 499)||(jedinstveniBroj>=500 &&jedinstveniBroj<=999))) return false;
+        int kontrolnaCifra = 11 - ((7 * ((jmbg.charAt(0) - '0') + (jmbg.charAt(6) - '0')) + 6 * ((jmbg.charAt(1) - '0') + (jmbg.charAt(7) - '0')) + 5 * ((jmbg.charAt(2) - '0') + (jmbg.charAt(8) - '0')) + 4 * ((jmbg.charAt(3) - '0') + (jmbg.charAt(9) - '0')) + 3 * ((jmbg.charAt(4) - '0') + (jmbg.charAt(10) - '0')) + 2 * ((jmbg.charAt(5) - '0') + (jmbg.charAt(11) - '0'))) % 11);
+        if (kontrolnaCifra > 9) kontrolnaCifra = 0;
+        if (kontrolnaCifra != (jmbg.charAt(12) - '0')) return false;
+        return true;
+    }
 }
