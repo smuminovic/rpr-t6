@@ -5,7 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
@@ -124,7 +124,7 @@ public class Controller {
     }
 
     //provjera za jmbg
-    private boolean validanJmbg(String n) {
+    private boolean validanUnos(String n) {
         if (n.length() != 13) return false;
         for (int i = 0; i < n.length(); i++) {
             if (!(n.charAt(i) >= '0' && n.charAt(i) <= '9')) {
@@ -207,7 +207,7 @@ public class Controller {
         jmbgField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
-                if (validanJmbg(n)) {
+                if (validanUnos(n)) {
                     jmbgField.getStyleClass().removeAll("poljeNijeIspravno");
                     jmbgField.getStyleClass().add("poljeIspravno");
                     jmbgValidan = true;
@@ -261,6 +261,7 @@ public class Controller {
             }
         });
     }
+    @FXML
     public void dugmeKliknuto(ActionEvent actionEvent) {
         String mjesto = mjestoField.getEditor().getText();
         String ime = imeField.getText();
@@ -275,8 +276,8 @@ public class Controller {
             datumValidan = false;
             datumField.getStyleClass().add("poljeNijeIspravno");
         }
-
-        if (isJmbgValid(jmbg) && izdvojiDatum != "" && izdvojiDatum.equals(uporediSaJmbg)) {
+// && izdvojiDatum != "" && izdvojiDatum.equals(uporediSaJmbg)
+        if (isJmbgValid(jmbg)) {
             jmbgValidan = true;
         } else {
             jmbgValidan = false;
