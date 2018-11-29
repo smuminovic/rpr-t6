@@ -29,5 +29,14 @@ public class Controller {
         }
         return !n.trim().isEmpty();
     }
+    private boolean validanIndeks(String n) {
+        if (n.length() > 5) return false;
+        for (int i = 0; i < n.length(); i++) {
+            if (!(n.charAt(i) >= '0' && n.charAt(i) < '9')) {
+                return false;
+            }
+        }
+        return !n.trim().isEmpty();
+    }
 
 }
