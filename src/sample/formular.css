@@ -1,10 +1,13 @@
 .poljeIspravno {
-    -fx-control-inner-background: green;
+    -fx-control-inner-background: #90EE90;
     -fx-border-width: 2;
     -fx-border-radius: 2px;
 }
 .poljeNijeIspravno {
-    -fx-control-inner-background: red;
+    -fx-control-inner-background: #E9967A;
     -fx-border-width: 2;
     -fx-border-radius: 2px;
+}
+#dugme {
+    -fx-background-color: #B0C4DE;
 }
