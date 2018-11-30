@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 public class Controller {
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-    ;
     public TextField imeField;
     public TextField prezimeField;
     public TextField indexField;
@@ -87,7 +86,7 @@ public class Controller {
         }
         datumZaIspis = "" + d + "/" + m + "/" + g;
         int novaG = Integer.parseInt(godina.substring(1, godina.length()));
-        //uporediSaJmbg=""+dan+mjesec+novaG;
+        uporediSaJmbg=""+dan+mjesec+novaG;
         //System.out.println("Uporedi:"+ uporediSaJmbg);
         if (d == 0 || m == 0 || g == 0) return false;
         boolean dateIsValid = true;
@@ -211,6 +210,20 @@ public class Controller {
                     jmbgField.getStyleClass().removeAll("poljeNijeIspravno");
                     jmbgField.getStyleClass().add("poljeIspravno");
                     jmbgValidan = true;
+                    String jmbg = jmbgField.getText();
+                    String izdvojiDatum = jmbg.substring(0, 7);
+                    if (datumField.getText().equals("")) {
+                        jmbgField.getStyleClass().removeAll("poljeNijeIspravno");
+                        jmbgField.getStyleClass().add("poljeIspravno");
+                        if (izdvojiDatum.equals(uporediSaJmbg) ) {
+                            datumField.getStyleClass().removeAll("poljeNijeIspravno");
+                            datumField.getStyleClass().add("poljeIspravno");
+                        }
+                    }
+                    else {
+                        jmbgField.getStyleClass().removeAll("poljeIspravno");
+                        jmbgField.getStyleClass().add("poljeNijeIspravno");
+                    }
                 } else {
                     jmbgField.getStyleClass().removeAll("poljeIspravno");
                     jmbgField.getStyleClass().add("poljeNijeIspravno");
@@ -225,6 +238,19 @@ public class Controller {
                     datumField.getStyleClass().removeAll("poljeNijeIspravno");
                     datumField.getStyleClass().add("poljeIspravno");
                     datumValidan = true;
+                    String jmbg = jmbgField.getText();
+                    String izdvojiDatum = jmbg.substring(0, 7);
+                    if (izdvojiDatum.equals(uporediSaJmbg) || jmbgField.getText().equals("")) {
+                        datumField.getStyleClass().removeAll("poljeNijeIspravno");
+                        datumField.getStyleClass().add("poljeIspravno");
+                        jmbgField.getStyleClass().removeAll("poljeNijeIspravno");
+                        jmbgField.getStyleClass().add("poljeIspravno");
+
+                    }
+                    else {
+                        datumField.getStyleClass().removeAll("poljeIspravno");
+                        datumField.getStyleClass().add("poljeNijeIspravno");
+                    }
                 } else {
                     datumField.getStyleClass().removeAll("poljeIspravno");
                     datumField.getStyleClass().add("poljeNijeIspravno");
@@ -276,8 +302,7 @@ public class Controller {
             datumValidan = false;
             datumField.getStyleClass().add("poljeNijeIspravno");
         }
-// && izdvojiDatum != "" && izdvojiDatum.equals(uporediSaJmbg)
-        if (isJmbgValid(jmbg)) {
+        if (isJmbgValid(jmbg) && izdvojiDatum != "" && izdvojiDatum.equals(uporediSaJmbg)) { ///OVDJE
             jmbgValidan = true;
         } else {
             jmbgValidan = false;
